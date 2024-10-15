@@ -7,6 +7,7 @@ from langchain_core.chat_history import (
     BaseChatMessageHistory,
     InMemoryChatMessageHistory,
 )
+from utils.jsonParser import parse_json
 import os
 
 # model = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
@@ -50,24 +51,30 @@ with_message_history = RunnableWithMessageHistory(
 
 config = {"configurable": {"session_id": "abc2"}}
 
+
 def stream_response(message):
+    response=""
     for r in with_message_history.stream(
         {"messages": [HumanMessage(content=message)]},
         config=config,
     ):
+        response +=r.content
         print(r.content, end='', flush=True)
-    print()  # New line after streaming is complete
+    print()
+    return response
 
 # Initial message
 stream_response("Игра началась!")
 
 if __name__ == "__main__":
-      while True:
+    answer = ""
+    while True:
         user_input = input("You: ")
         if user_input.lower() == 'quit':
+            parse_json(answer)
             break
         
-        stream_response(user_input)
+        answer = stream_response(user_input)
 
 
 
