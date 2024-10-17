@@ -13,9 +13,6 @@ import os
 # model = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
 
 model = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
-parser = StrOutputParser()
-chain = model | parser
-
 
 store = {}
 
