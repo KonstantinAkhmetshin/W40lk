@@ -11,9 +11,14 @@ def initCharacterCreation(session_id):
         for chunk in init_character_creation(session_id):
             yield chunk
 
-    return Response(stream_with_context(generate()), content_type='text/plain; charset=utf-8')
-
-
+    return Response(
+        generate(),
+        content_type='text/event-stream; charset=utf-8',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        }
+    )
 
 # @char_controller.route('/char/<session_id>', methods=['POST'])
 # def createCharacter(session_id):

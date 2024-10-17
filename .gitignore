@@ -4,4 +4,8 @@ venv/
 RUN_ME.sh 
 RUN_LC.sh
 vector_storage/
-src/__pycache__
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
