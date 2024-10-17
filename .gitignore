@@ -1,6 +1,7 @@
 # Virtual environment
 venv/
 # Ignore RUN_MY.sh file
-RUN_ME.sh
+RUN_ME.sh 
+RUN_LC.sh
 vector_storage/
 src/__pycache__
